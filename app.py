@@ -1,8 +1,7 @@
-from flask import Flask, jsonify, request
 from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
-db = PostgresqlDatabase('contacts', user='chelseadgls',
+db = PostgresqlDatabase('contacts', user='',
                         password='', host='localhost', port=5432)
 
 
@@ -19,7 +18,7 @@ class BaseModel(Model):
 class Contact(BaseModel):
     first_name = CharField()
     last_name = CharField()
-    phone = IntegerField()
+    phone = BigIntegerField()
 
 
 db.connect()
@@ -29,13 +28,10 @@ db.create_tables([Contact])
 Contact(first_name='Michael', last_name='Bluth', phone=3105555555).save()
 Contact(first_name='Buster', last_name='Bluth', phone=9175555555).save()
 
-app = Flask(__name__)
+# find by first name
+michael = Contact.select().where(Contact.first_name == 'Michael').get()
+print(michael)
 
-# routes
-
-# get route
-# put route
-# update route
-# delete route
-
-app.run(debug=True, port=9000)
+# find all
+for contact in Contact.select():
+    print(contact.first_name)
