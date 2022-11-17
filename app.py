@@ -29,3 +29,7 @@ Contact(full_name='Batman', phone=3105555555).save()
 Contact(full_name='Superman', phone=9175555555).save()
 
 app = Flask(__name__)
+
+# routes
+
+app.run(debug=True, port=9000)
