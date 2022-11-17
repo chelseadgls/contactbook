@@ -17,7 +17,8 @@ class BaseModel(Model):
 
 
 class Contact(BaseModel):
-    full_name = CharField()
+    first_name = CharField()
+    last_name = CharField()
     phone = IntegerField()
 
 
@@ -25,11 +26,16 @@ db.connect()
 db.drop_tables([Contact])
 db.create_tables([Contact])
 
-Contact(full_name='Batman', phone=3105555555).save()
-Contact(full_name='Superman', phone=9175555555).save()
+Contact(first_name='Michael', last_name='Bluth', phone=3105555555).save()
+Contact(first_name='Buster', last_name='Bluth', phone=9175555555).save()
 
 app = Flask(__name__)
 
 # routes
+
+# get route
+# put route
+# update route
+# delete route
 
 app.run(debug=True, port=9000)
